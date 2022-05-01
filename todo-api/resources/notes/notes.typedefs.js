@@ -2,8 +2,8 @@ import { gql } from 'apollo-server-express'
 export const typeDefs = gql`
     type Note {
         id: ID
-        note_name: String,
-        note_content: String
+        note_name: String!,
+        note_content: String!
     }
     type Mutation {
         createNote(name: String!, content: String!): Note

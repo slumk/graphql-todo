@@ -16,5 +16,5 @@ app.use(express.urlencoded({
 }))
 gserver.start().then(() => {
   gserver.applyMiddleware({ app })
-  app.listen(1234, () => (console.log('Started')))
+  app.listen(7000, () => (console.log('Started')))
 })

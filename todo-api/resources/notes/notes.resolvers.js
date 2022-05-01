@@ -4,6 +4,7 @@ export const resolvers = {
   Query: {
     notes: async () => {
       const notes = await noteModel.find()
+        .sort({ created_date: -1 })
       return notes
     }
   },
