@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { useQuery } from "@apollo/client"
+import { useQuery, useMutation } from "@apollo/client"
 import { fetchNotes } from "./graphql/fetchNotes"
+import { deleteNotes } from "./graphql/addNotes"
 
 const NotePanel = ({ note }) => {
     const [deleted, updateDeletionStatus] = useState(false)
-    if (deleted){
+    const [deleteNote, { error: deletionError, loading:deleteLoading }] = useMutation(deleteNotes)
+    if (deleted || deletionError || deleteLoading){
         return null
     }
     return (
@@ -19,9 +21,8 @@ const NotePanel = ({ note }) => {
             </div>
             <button className="justify-self-end bg-green-200 hover:bg-red-400 rounded-full px-2 py-0.5"
                 onClick={() => {
-                    if (deleteItem(note.id)) {
-                        updateDeletionStatus(true)
-                    }
+                    deleteNote({ variables: { id: note.id } })
+                    return updateDeletionStatus(true)
                 }}>
                 Remove
             </button>
