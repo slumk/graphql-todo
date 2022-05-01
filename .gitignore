@@ -1,0 +1,4 @@
+**/node_modules
+todo-app/.eslintrc.json
+todo-app/.parcel-cache/*
+todo-app/dist/*
